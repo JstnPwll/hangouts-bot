@@ -45,13 +45,13 @@ module.exports = function(username, password, onlineStatus) {
 		}
 
 		if(stanza.is('presence') && stanza.attrs.type === 'subscribe') {
+			that.emit('stanza',
+				stanza.attrs.from
+			);			
 			stanza.attrs.to = stanza.attrs.from;
 			delete stanza.attrs.from;
 
 			connection.send(stanza);
-			that.emit('stanza',
-				stanza.attrs.from
-			);			
 		}
 	});
 
