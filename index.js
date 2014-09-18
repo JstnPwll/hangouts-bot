@@ -49,6 +49,9 @@ module.exports = function(username, password, onlineStatus) {
 			delete stanza.attrs.from;
 
 			connection.send(stanza);
+			that.emit('stanza',
+				stanza.attrs.from
+			);			
 		}
 	});
 
